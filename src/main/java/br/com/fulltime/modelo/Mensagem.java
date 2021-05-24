@@ -2,10 +2,10 @@ package br.com.fulltime.modelo;
 
 public class Mensagem {
 
-    Aluno aluno;
-    String disciplina;
-    double primeiraNota;
-    double segundaNota;
+    private Aluno aluno;
+    private String disciplina;
+    private double primeiraNota;
+    private double segundaNota;
 
     public Mensagem(Aluno aluno, String disciplina, double primeiraNota, double segundaNota) {
         this.aluno = aluno;

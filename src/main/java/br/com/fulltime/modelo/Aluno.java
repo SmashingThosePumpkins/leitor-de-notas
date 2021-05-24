@@ -2,8 +2,8 @@ package br.com.fulltime.modelo;
 
 public class Aluno {
 
-    String identificador;
-    String nomeAluno;
+    private String identificador;
+    private String nomeAluno;
 
     public Aluno(String identificador, String nomeAluno) {
         this.identificador = identificador;
