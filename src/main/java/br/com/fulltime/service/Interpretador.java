@@ -26,7 +26,7 @@ public class Interpretador {
             mensagem.setAluno(atributos[0], atributos[1]);
             mensagem.setDisciplina(atributos[2]);
             mensagem.setPrimeiraNota(atributos[3]);
-            mensagem.setSegundaNota(atributos[4]);
+            mensagem.setSegundaNota(atributos[4].replace("|", ""));
 
             // Adicionar mensagem na lista
             lista.add(mensagem);
