@@ -1,3 +1,14 @@
+## GITIGNORE ##
+#Gradle
+.gradle
+build/
+
+#IntelliJ IDEA
+.idea
+out/
+*.iml
+*.lck
+
 # Compiled class file
 *.class
 
