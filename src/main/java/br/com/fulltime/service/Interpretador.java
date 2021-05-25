@@ -9,7 +9,7 @@ public class Interpretador {
 
     private final String NOTAS_ALUNOS = "src/main/resources/notas_alunos.txt";
 
-    public ArrayList<Mensagem> interpretar() throws FileNotFoundException{
+    public ArrayList<Mensagem> getNotas() throws FileNotFoundException{
         var lista = new ArrayList<Mensagem>();
 
         // Abrir Scanner
@@ -22,7 +22,7 @@ public class Interpretador {
             var linha = leitor.nextLine();
             String[] atributos = linha.split(";");
 
-            // Inserir atributos da linha na classe Mensagem fornecida
+            // Inserir atributos da linha na classe Mensagem
             mensagem.setAluno(atributos[0], atributos[1]);
             mensagem.setDisciplina(atributos[2]);
             mensagem.setPrimeiraNota(atributos[3]);

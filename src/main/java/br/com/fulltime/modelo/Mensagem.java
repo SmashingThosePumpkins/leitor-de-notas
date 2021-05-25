@@ -53,12 +53,10 @@ public class Mensagem {
 
     @Override
     public String toString() {
-        return "Mensagem: " +
-                "{Nome = " + getNomeAluno() +
-                ", Matéria = " + disciplina + '\'' +
-                ", Primeira Nota = " + primeiraNota + '\'' +
-                ", Segunda nota = " + segundaNota + '\'' +
-                ", ID = " + getIdentificador() + '\'' +
-                '}';
+        return  "Nome = " + getNomeAluno() +
+                ", Matéria = " + disciplina +
+                ", Primeira Nota = " + primeiraNota +
+                ", Segunda nota = " + segundaNota +
+                ", ID = " + getIdentificador() + '\n';
     }
 }
