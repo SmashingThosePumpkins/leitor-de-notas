@@ -5,10 +5,7 @@ import br.com.fulltime.modelo.Arquivo;
 import br.com.fulltime.modelo.Mensagem;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Painel {
@@ -66,11 +63,13 @@ public class Painel {
                 var n2 = (int) (mensagem.getSegundaNota() * 10000);
                 stringBuilder.append(String.format("%04d", n2));
                 stringBuilder.append('|');
+                stringBuilder.append('\n');
 
                 // Anexar a nova linha ao arquivo de texto
                 try {
-                    var fileWriter = new FileWriter(Arquivo.NOTAS_ALUNOS);
-                    fileWriter.append(stringBuilder);
+                    var bufferedWriter = new BufferedWriter(new FileWriter(Arquivo.NOTAS_ALUNOS, true));
+                    bufferedWriter.append(stringBuilder);
+                    bufferedWriter.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
