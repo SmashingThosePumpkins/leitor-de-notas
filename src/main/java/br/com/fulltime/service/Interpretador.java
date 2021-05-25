@@ -7,13 +7,11 @@ import java.io.*;
 
 public class Interpretador {
 
-    private final String NOTAS_ALUNOS = "src/main/resources/notas_alunos.txt";
-
     public ArrayList<Mensagem> getNotas() throws FileNotFoundException{
         var lista = new ArrayList<Mensagem>();
 
         // Abrir Scanner
-        Scanner leitor = new Scanner(new File(NOTAS_ALUNOS));
+        Scanner leitor = new Scanner(new File(Arquivo.NOTAS_ALUNOS));
 
         do {
             var mensagem = new Mensagem();
@@ -23,10 +21,10 @@ public class Interpretador {
             String[] atributos = linha.split(";");
 
             // Inserir atributos da linha na classe Mensagem
-            mensagem.setAluno(atributos[0], atributos[1]);
-            mensagem.setDisciplina(atributos[2]);
-            mensagem.setPrimeiraNota(atributos[3]);
-            mensagem.setSegundaNota(atributos[4].replace("|", ""));
+            mensagem.setAluno(atributos[Arquivo.ARRAY_IDENTIFICADOR_ALUNO], atributos[Arquivo.ARRAY_NOME_ALUNO]);
+            mensagem.setDisciplina(atributos[Arquivo.ARRAY_DISCIPLINA]);
+            mensagem.setPrimeiraNota(atributos[Arquivo.ARRAY_PRIMEIRA_NOTA]);
+            mensagem.setSegundaNota(atributos[Arquivo.ARRAY_SEGUNDA_NOTA].replace("|", ""));
 
             // Adicionar mensagem na lista
             lista.add(mensagem);
