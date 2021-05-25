@@ -35,16 +35,18 @@ public class Mensagem {
         this.disciplina = disciplina;
     }
 
-    public String getPrimeiraNota() {
-        return this.primeiraNota;
+    public double getPrimeiraNota() {
+        var valor = Double.parseDouble(this.primeiraNota.replace("N1", ""));
+        return valor / 100;
     }
 
     public void setPrimeiraNota(String primeiraNota) {
         this.primeiraNota = primeiraNota;
     }
 
-    public String getSegundaNota() {
-        return this.segundaNota;
+    public double getSegundaNota() {
+        var valor = Double.parseDouble(this.segundaNota.replace("N2", ""));
+        return valor / 100;
     }
 
     public void setSegundaNota(String segundaNota) {
@@ -55,8 +57,8 @@ public class Mensagem {
     public String toString() {
         return  "[" + getIdentificador() + "] " +
                 getNomeAluno() +
-                " - " + disciplina +
-                "(Primeira Nota = " + primeiraNota +
-                ", Segunda Nota = " + segundaNota + ")\n";
+                " - " + getDisciplina() +
+                " (" + getPrimeiraNota() +
+                " / " + getSegundaNota() + ")\n";
     }
 }
