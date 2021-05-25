@@ -14,7 +14,7 @@ public class Mensagem {
 //        this.segundaNota = segundaNota;
     }
 
-    public String getIdentificador() {
+    public long getIdentificador() {
         return this.aluno.getIdentificador();
     }
 
@@ -25,6 +25,10 @@ public class Mensagem {
     public void setAluno(String identificador, String nome) {
         this.aluno.setNomeAluno(nome);
         this.aluno.setIdentificador(identificador);
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
     public String getDisciplina() {

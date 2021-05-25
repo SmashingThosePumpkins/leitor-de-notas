@@ -10,8 +10,8 @@ public class Aluno {
         this.nomeAluno = nomeAluno;
     }
 
-    public String getIdentificador() {
-        return identificador;
+    public long getIdentificador() {
+        return Long.parseLong(identificador);
     }
 
     public void setIdentificador(String identificador) {
