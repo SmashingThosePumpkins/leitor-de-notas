@@ -53,10 +53,10 @@ public class Mensagem {
 
     @Override
     public String toString() {
-        return  "Nome = " + getNomeAluno() +
-                ", Matéria = " + disciplina +
-                ", Primeira Nota = " + primeiraNota +
-                ", Segunda nota = " + segundaNota +
-                ", ID = " + getIdentificador() + '\n';
+        return  "[" + getIdentificador() + "] " +
+                getNomeAluno() +
+                " - " + disciplina +
+                "(Primeira Nota = " + primeiraNota +
+                ", Segunda Nota = " + segundaNota + ")\n";
     }
 }
