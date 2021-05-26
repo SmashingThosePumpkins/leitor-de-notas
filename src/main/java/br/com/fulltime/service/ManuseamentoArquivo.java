@@ -21,8 +21,8 @@ public class ManuseamentoArquivo {
             aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno (Limite de vinte caracteres)."));
             aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno (Seis números)."));
             mensagem.setDisciplina(JOptionPane.showInputDialog(null, "Digite a disciplina."));
-            mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota."));
-            mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota."));
+            mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota.\nExemplos: [9.5], [6], [10.0]."));
+            mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota.\nExemplos: [9.5], [6], [10.0]."));
             mensagem.setAluno(aluno);
         } catch (NullPointerException e) {
             e.printStackTrace();

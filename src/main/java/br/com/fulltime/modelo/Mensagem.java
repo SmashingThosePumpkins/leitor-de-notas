@@ -8,10 +8,7 @@ public class Mensagem {
     private String segundaNota = "n/a";
 
     public Mensagem() {
-//        this.aluno = aluno;
-//        this.disciplina = disciplina;
-//        this.primeiraNota = primeiraNota;
-//        this.segundaNota = segundaNota;
+
     }
 
     public long getIdentificador() {
@@ -54,10 +51,26 @@ public class Mensagem {
     }
 
     public void setPrimeiraNota(String primeiraNota) {
-        if (primeiraNota == null) {
+
+        String semN1;
+        if (primeiraNota.contains("N1")) {
+            semN1 = primeiraNota.substring(2);
+        } else {
+            semN1 = primeiraNota;
+        }
+
+        if (semN1 == null) {
             throw new NullPointerException("Valor nulo.");
         }
-        this.primeiraNota = primeiraNota;
+        try {
+            var parseado = Double.parseDouble(semN1);
+            if (parseado > 1000) {
+                throw new StringIndexOutOfBoundsException("A maior nota possível é 10. A nota passada foi " + parseado);
+            }
+        } catch (NumberFormatException e) {
+            throw new StringIndexOutOfBoundsException("Número inválido.");
+        }
+        this.primeiraNota = semN1;
     }
 
     public double getSegundaNota() {
