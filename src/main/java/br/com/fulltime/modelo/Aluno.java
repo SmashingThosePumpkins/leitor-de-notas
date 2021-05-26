@@ -6,7 +6,7 @@ public class Aluno {
     private String nomeAluno;
 
     public Aluno(String identificador, String nomeAluno) {
-        this.identificador = identificador;
+        this.identificador = identificador.substring(1);
         this.nomeAluno = nomeAluno;
     }
 
@@ -15,7 +15,7 @@ public class Aluno {
     }
 
     public void setIdentificador(String identificador) {
-        this.identificador = identificador;
+        this.identificador = identificador.substring(1);
     }
 
     public String getNomeAluno() {
