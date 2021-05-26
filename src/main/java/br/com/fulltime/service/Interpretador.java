@@ -11,7 +11,7 @@ public class Interpretador {
         var lista = new ArrayList<Mensagem>();
 
         // Abrir Scanner
-        Scanner leitor = new Scanner(new File(Arquivo.NOTAS_ALUNOS));
+        Scanner leitor = new Scanner(new File(Arquivo.ARQUIVO_NOTAS));
 
         do {
             var mensagem = new Mensagem();

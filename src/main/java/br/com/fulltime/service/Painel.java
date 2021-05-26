@@ -7,13 +7,14 @@ import br.com.fulltime.modelo.Mensagem;
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.IllegalFormatException;
 
 public class Painel {
 
     public static ArrayList<Mensagem> painel() {
 
         ArrayList<Mensagem> lista = null;
-        String[] options = {"Checar todas as notas", "Adicionar uma nova nota"};
+        String[] options = {"Checar todas as notas", "Adicionar uma nova nota", "Deletar uma nota"};
 
         int input = JOptionPane.showOptionDialog(null, "O que deseja fazer?",
                 "Escolha uma opção.",
@@ -26,7 +27,7 @@ public class Painel {
 
                     lista = interpretador.getNotas();
                     var displayText = new StringBuilder();
-                    lista.forEach(displayText::append);
+                    lista.forEach((item) -> displayText.append(item));
 
                     JOptionPane.showMessageDialog(null, displayText.toString());
 
@@ -48,6 +49,20 @@ public class Painel {
 
                 JOptionPane.showMessageDialog(null, "Nova nota cadastrada com sucesso.");
 
+            }
+
+            case 2 -> {
+                var inputIdentificador = JOptionPane.showInputDialog(null, "Digite o identificador (número de seis dígitos).");
+                var inputDisciplina = JOptionPane.showInputDialog(null, "Digite a disciplina.");
+
+                try {
+                    ManuseamentoArquivo.limparLinha(Long.parseLong(inputIdentificador), inputDisciplina);
+                } catch (IllegalFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Não foi digitado um número. Tente novamente.");
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             default -> {
