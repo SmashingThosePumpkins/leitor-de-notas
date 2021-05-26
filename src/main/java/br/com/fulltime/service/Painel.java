@@ -43,7 +43,7 @@ public class Painel {
 
                 // Caso o usuário queira adicionar uma nova nota
                 case 1 -> {
-                    var aluno = new Aluno("n/a", "n/a");
+                    var aluno = new Aluno("@000000", "n/a");
                     var mensagem = new Mensagem();
 
                     try {

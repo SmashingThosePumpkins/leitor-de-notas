@@ -2,7 +2,7 @@ package br.com.fulltime.modelo;
 
 public class Mensagem {
 
-    private Aluno aluno = new Aluno("n/a", "n/a");
+    private Aluno aluno = new Aluno("@000000", "n/a");
     private String disciplina = "n/a";
     private String primeiraNota = "n/a";
     private String segundaNota = "n/a";

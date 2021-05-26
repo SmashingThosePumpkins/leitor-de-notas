@@ -6,8 +6,8 @@ public class Aluno {
     private String nomeAluno;
 
     public Aluno(String identificador, String nomeAluno) {
-        this.identificador = identificador.substring(1);
-        this.nomeAluno = nomeAluno;
+        this.setIdentificador(identificador);
+        this.setNomeAluno(nomeAluno);
     }
 
     public long getIdentificador() {
@@ -15,10 +15,19 @@ public class Aluno {
     }
 
     public void setIdentificador(String identificador) {
+        var semArroba = identificador.substring(1);
         if (identificador == null) {
             throw new NullPointerException("Identificador nulo.");
         }
-        this.identificador = identificador.substring(1);
+        if (semArroba.length() > 6) {
+            throw new StringIndexOutOfBoundsException("Identificador inválido.");
+        }
+        try {
+            Long.parseLong(semArroba);
+        } catch (NumberFormatException e) {
+            throw new StringIndexOutOfBoundsException("Identificador inválido.");
+        }
+        this.identificador = semArroba;
     }
 
     public String getNomeAluno() {

@@ -18,8 +18,8 @@ public class ManuseamentoArquivo {
     public static boolean imprimirMensagem(Aluno aluno, Mensagem mensagem) throws IOException {
         // Pegar os dados necessários para o cadastro
         try {
-            aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno."));
-            aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno."));
+            aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno (Limite de vinte caracteres)."));
+            aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno (Seis números)."));
             mensagem.setDisciplina(JOptionPane.showInputDialog(null, "Digite a disciplina."));
             mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota."));
             mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota."));
