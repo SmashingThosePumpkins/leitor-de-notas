@@ -56,7 +56,13 @@ public class ManuseamentoArquivo {
 
     }
 
-    public static void limparLinha(long identificador, String disciplina) throws IOException {
+    public static void limparLinha() throws IOException {
+
+        boolean excluido = false;
+
+        var identificador = Long.parseLong(JOptionPane.showInputDialog(null,
+                "Digite o identificador do aluno (número de seis dígitos)."));
+        var disciplina = JOptionPane.showInputDialog(null, "Digite a disciplina.");
 
         {
             // Ler linha por linha o conteúdo do arquivo de notas e passando para um arquivo temporário,
@@ -69,6 +75,7 @@ public class ManuseamentoArquivo {
             do {
                 linha = scanner.nextLine();
                 if (linha.contains((identificador + "")) && linha.contains(disciplina)) {
+                    excluido = true;
                     continue;
                 } else {
                     buffWriter.write(linha + "\n");
@@ -97,8 +104,14 @@ public class ManuseamentoArquivo {
             buffWriter.close();
             scanner.close();
 
-            JOptionPane.showMessageDialog(null, String.format("Nota com o ID %06d foi excluída com sucesso.", identificador));
+            if (excluido) {
+                JOptionPane.showMessageDialog(null, "Nota excluída com sucesso.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Não foi possível excluir a nota.\n" +
+                        "Verifique se a disciplina e/ou o identificador foram digitados corretamente.");
+
+            }
+
         }
     }
-
 }

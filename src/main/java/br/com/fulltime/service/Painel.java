@@ -60,14 +60,13 @@ public class Painel {
 
                 // Caso o usuário queira deletar uma nota
                 case 2 -> {
-                    var inputIdentificador = JOptionPane.showInputDialog(null, "Digite o identificador do aluno (número de seis dígitos).");
-                    var inputDisciplina = JOptionPane.showInputDialog(null, "Digite a disciplina.");
 
                     try {
-                        ManuseamentoArquivo.limparLinha(Long.parseLong(inputIdentificador), inputDisciplina);
-                    } catch (IllegalFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Não foi digitado um número. Tente novamente.");
+                        ManuseamentoArquivo.limparLinha();
+                    } catch (NullPointerException e) {
                         e.printStackTrace();
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Não foi digitado um número. Tente novamente.");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
