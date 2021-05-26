@@ -15,7 +15,14 @@ public class Aluno {
     }
 
     public void setIdentificador(String identificador) {
-        var semArroba = identificador.substring(1);
+
+        String semArroba;
+        if (identificador.contains("@")) {
+            semArroba = identificador.substring(1);
+        } else {
+            semArroba = identificador;
+        }
+
         if (identificador == null) {
             throw new NullPointerException("Identificador nulo.");
         }

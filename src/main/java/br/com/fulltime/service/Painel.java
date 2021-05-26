@@ -31,7 +31,7 @@ public class Painel {
 
                         lista = interpretador.getNotas();
                         var displayText = new StringBuilder();
-                        lista.forEach((item) -> displayText.append(item));
+                        lista.forEach(displayText::append);
 
                         JOptionPane.showMessageDialog(null, displayText.toString());
 
@@ -43,7 +43,7 @@ public class Painel {
 
                 // Caso o usuário queira adicionar uma nova nota
                 case 1 -> {
-                    var aluno = new Aluno("@000000", "n/a");
+                    var aluno = new Aluno("0", "n/a");
                     var mensagem = new Mensagem();
 
                     try {
