@@ -51,10 +51,11 @@ public class Painel {
                         if (imprimiu) {
                             JOptionPane.showMessageDialog(null, "Nova nota cadastrada com sucesso.");
                         }
+                    } catch (StringIndexOutOfBoundsException e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 }
 
                 // Caso o usuário queira deletar uma nota

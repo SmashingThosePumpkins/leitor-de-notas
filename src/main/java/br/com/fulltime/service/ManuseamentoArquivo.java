@@ -24,7 +24,7 @@ public class ManuseamentoArquivo {
             mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota."));
             mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota."));
             mensagem.setAluno(aluno);
-        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
             return false;
         }

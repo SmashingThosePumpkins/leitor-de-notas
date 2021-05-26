@@ -29,6 +29,9 @@ public class Aluno {
         if (nomeAluno == null) {
             throw new NullPointerException("Nome do aluno nulo.");
         }
+        if (!(nomeAluno.length() <= 20)) {
+            throw new StringIndexOutOfBoundsException("O limite para o nome é de vinte caracteres.");
+        }
         this.nomeAluno = nomeAluno;
     }
 }
