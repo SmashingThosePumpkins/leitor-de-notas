@@ -47,12 +47,13 @@ public class Painel {
                     var mensagem = new Mensagem();
 
                     try {
-                        ManuseamentoArquivo.imprimirMensagem(aluno, mensagem);
+                        var imprimiu = ManuseamentoArquivo.imprimirMensagem(aluno, mensagem);
+                        if (imprimiu) {
+                            JOptionPane.showMessageDialog(null, "Nova nota cadastrada com sucesso.");
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-                    JOptionPane.showMessageDialog(null, "Nova nota cadastrada com sucesso.");
 
                 }
 

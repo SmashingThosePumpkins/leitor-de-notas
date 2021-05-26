@@ -15,14 +15,21 @@ public class ManuseamentoArquivo {
 
     private static String ARQUIVO_TEXTO_TEMPORARIO = "src/main/resources/temp.txt";
 
-    public static void imprimirMensagem(Aluno aluno, Mensagem mensagem) throws IOException {
+    public static boolean imprimirMensagem(Aluno aluno, Mensagem mensagem) throws IOException {
         // Pegar os dados necessários para o cadastro
-        aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno."));
-        aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno."));
-        mensagem.setDisciplina(JOptionPane.showInputDialog(null, "Digite a disciplina."));
-        mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota."));
-        mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota."));
-        mensagem.setAluno(aluno);
+        try {
+            aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno."));
+            aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno."));
+            mensagem.setDisciplina(JOptionPane.showInputDialog(null, "Digite a disciplina."));
+            mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota."));
+            mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota."));
+            mensagem.setAluno(aluno);
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        // Aplicar os dados a mensagem
 
         // Construir a nova linha
         var stringBuilder = new StringBuilder();
@@ -46,6 +53,9 @@ public class ManuseamentoArquivo {
         var bufferedWriter = new BufferedWriter(new FileWriter(Arquivo.ARQUIVO_NOTAS, true));
         bufferedWriter.append(stringBuilder);
         bufferedWriter.close();
+
+        return true;
+
     }
 
     public static void limparLinha(long identificador, String disciplina) throws IOException {

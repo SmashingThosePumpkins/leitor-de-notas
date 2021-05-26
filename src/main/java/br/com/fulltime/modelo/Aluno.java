@@ -15,6 +15,9 @@ public class Aluno {
     }
 
     public void setIdentificador(String identificador) {
+        if (identificador == null) {
+            throw new NullPointerException("Identificador nulo.");
+        }
         this.identificador = identificador.substring(1);
     }
 
@@ -23,6 +26,9 @@ public class Aluno {
     }
 
     public void setNomeAluno(String nomeAluno) {
+        if (nomeAluno == null) {
+            throw new NullPointerException("Nome do aluno nulo.");
+        }
         this.nomeAluno = nomeAluno;
     }
 }

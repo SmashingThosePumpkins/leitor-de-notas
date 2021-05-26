@@ -28,6 +28,9 @@ public class Mensagem {
     }
 
     public void setAluno(Aluno aluno) {
+        if (aluno == null) {
+            throw new NullPointerException("Aluno nulo.");
+        }
         this.aluno = aluno;
     }
 
@@ -36,6 +39,9 @@ public class Mensagem {
     }
 
     public void setDisciplina(String disciplina) {
+        if (disciplina == null) {
+            throw new NullPointerException("Disciplina nula.");
+        }
         this.disciplina = disciplina;
     }
 
@@ -45,6 +51,9 @@ public class Mensagem {
     }
 
     public void setPrimeiraNota(String primeiraNota) {
+        if (primeiraNota == null) {
+            throw new NullPointerException("Valor nulo.");
+        }
         this.primeiraNota = primeiraNota;
     }
 
@@ -54,6 +63,9 @@ public class Mensagem {
     }
 
     public void setSegundaNota(String segundaNota) {
+        if (segundaNota == null) {
+            throw new NullPointerException("Valor nulo.");
+        }
         this.segundaNota = segundaNota;
     }
 
