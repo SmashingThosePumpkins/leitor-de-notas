@@ -29,8 +29,6 @@ public class ManuseamentoArquivo {
             return false;
         }
 
-        // Aplicar os dados a mensagem
-
         // Construir a nova linha
         var stringBuilder = new StringBuilder();
         stringBuilder.append('@');
