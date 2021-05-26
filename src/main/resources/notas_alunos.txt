@@ -6,3 +6,4 @@
 @000102;Silvia Fontes;História;N11000;N21000|
 @000998;Marcos Pontes;Astronomia;N10980;N20940|
 @000998;Marcos Pontes;História;N10050;N20400|
+@000998;Marcos Pontes;Matemática;N10950;N20480|

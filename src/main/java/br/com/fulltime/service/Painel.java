@@ -63,10 +63,12 @@ public class Painel {
 
                     try {
                         ManuseamentoArquivo.limparLinha();
-                    } catch (NullPointerException e) {
-                        e.printStackTrace();
                     } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Não foi digitado um número. Tente novamente.");
+                        if (e.getMessage().equals("null")) {
+                        e.printStackTrace();}
+                        else {
+                            JOptionPane.showMessageDialog(null, "Não foi digitado um número. Tente novamente.");
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
