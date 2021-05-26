@@ -74,7 +74,7 @@ public class ManuseamentoArquivo {
 
             do {
                 linha = scanner.nextLine();
-                if (linha.contains((identificador + "")) && linha.contains(disciplina)) {
+                if (linha.contains((identificador + "")) && linha.contains(";" + disciplina + ";")) {
                     excluido = true;
                     continue;
                 } else {
