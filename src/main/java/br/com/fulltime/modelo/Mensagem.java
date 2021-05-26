@@ -42,6 +42,9 @@ public class Mensagem {
         if (disciplina == null) {
             throw new NullPointerException("Disciplina nula.");
         }
+        if (!(disciplina.length() <= 20)) {
+            throw new StringIndexOutOfBoundsException("O limite para o nome da disciplina é de vinte caracteres.");
+        }
         this.disciplina = disciplina;
     }
 
