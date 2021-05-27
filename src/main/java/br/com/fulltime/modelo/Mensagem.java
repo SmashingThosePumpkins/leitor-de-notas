@@ -55,6 +55,7 @@ public class Mensagem {
 
     public void setPrimeiraNota(String primeiraNota) {
 
+        // Remoção do "N1" caso a String fornecida contenha.
         String semN1;
         if (primeiraNota.contains("N1")) {
             semN1 = primeiraNota.substring(2);
@@ -82,10 +83,27 @@ public class Mensagem {
     }
 
     public void setSegundaNota(String segundaNota) {
-        if (segundaNota == null) {
+
+        // Remoção do "N2" caso a String fornecida contenha.
+        String semN2;
+        if (segundaNota.contains("N2")) {
+            semN2 = segundaNota.substring(2);
+        } else {
+            semN2 = segundaNota;
+        }
+
+        if (semN2 == null) {
             throw new NullPointerException("Valor nulo.");
         }
-        this.segundaNota = segundaNota;
+        try {
+            var parseado = Double.parseDouble(semN2);
+            if (parseado > 1000) {
+                throw new StringIndexOutOfBoundsException("A maior nota possível é 10. A nota passada foi " + parseado);
+            }
+        } catch (NumberFormatException e) {
+            throw new StringIndexOutOfBoundsException("Número inválido.");
+        }
+        this.segundaNota = semN2;
     }
 
     @Override
