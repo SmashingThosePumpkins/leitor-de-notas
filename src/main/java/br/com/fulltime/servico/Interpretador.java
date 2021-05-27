@@ -21,10 +21,16 @@ public class Interpretador {
             String[] atributos = linha.split(";");
 
             // Inserir atributos da linha na classe Mensagem
-            mensagem.setAluno(atributos[Arquivo.ARRAY_IDENTIFICADOR_ALUNO], atributos[Arquivo.ARRAY_NOME_ALUNO]);
-            mensagem.setDisciplina(atributos[Arquivo.ARRAY_DISCIPLINA]);
-            mensagem.setPrimeiraNota(atributos[Arquivo.ARRAY_PRIMEIRA_NOTA]);
-            mensagem.setSegundaNota(atributos[Arquivo.ARRAY_SEGUNDA_NOTA].replace("|", ""));
+            String identificador = atributos[Arquivo.ARRAY_IDENTIFICADOR_ALUNO];
+            String nomeAluno = atributos[Arquivo.ARRAY_NOME_ALUNO];
+            String atributo = atributos[Arquivo.ARRAY_DISCIPLINA];
+            String primeiraNota = atributos[Arquivo.ARRAY_PRIMEIRA_NOTA];
+            String segundaNota = atributos[Arquivo.ARRAY_SEGUNDA_NOTA].replace("|", "");
+
+            mensagem.setAluno(identificador, nomeAluno);
+            mensagem.setDisciplina(atributo);
+            mensagem.setPrimeiraNota(primeiraNota);
+            mensagem.setSegundaNota(segundaNota);
 
             // Adicionar mensagem na lista
             lista.add(mensagem);
