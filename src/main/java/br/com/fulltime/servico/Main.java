@@ -1,4 +1,4 @@
-package br.com.fulltime.service;
+package br.com.fulltime.servico;
 
 public class Main {
 

@@ -1,13 +1,11 @@
-package br.com.fulltime.service;
+package br.com.fulltime.servico;
 
 import br.com.fulltime.modelo.Aluno;
-import br.com.fulltime.modelo.Arquivo;
 import br.com.fulltime.modelo.Mensagem;
 
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.IllegalFormatException;
 
 public class Painel {
 

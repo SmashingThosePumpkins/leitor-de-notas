@@ -1,4 +1,4 @@
-package br.com.fulltime.service;
+package br.com.fulltime.servico;
 
 import br.com.fulltime.modelo.*;
 
