@@ -7,7 +7,7 @@ import java.io.*;
 
 public class Interpretador {
 
-    public ArrayList<Mensagem> getNotas() throws FileNotFoundException{
+    public ArrayList<Mensagem> getNotas() throws FileNotFoundException {
         var lista = new ArrayList<Mensagem>();
 
         // Abrir Scanner

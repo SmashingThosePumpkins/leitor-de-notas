@@ -108,7 +108,7 @@ public class Mensagem {
 
     @Override
     public String toString() {
-        return  "[" + String.format("%06d", getIdentificador()) + "] " +
+        return "[" + String.format("%06d", getIdentificador()) + "] " +
                 getNomeAluno() +
                 " - " + getDisciplina() +
                 " (" + getPrimeiraNota() +

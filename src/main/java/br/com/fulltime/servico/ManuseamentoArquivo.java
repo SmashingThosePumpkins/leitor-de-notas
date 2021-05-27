@@ -47,7 +47,6 @@ public class ManuseamentoArquivo {
         stringBuilder.append('\n');
 
         // Anexar a nova linha ao arquivo de texto
-
         var bufferedWriter = new BufferedWriter(new FileWriter(Arquivo.ARQUIVO_NOTAS, true));
         bufferedWriter.append(stringBuilder);
         bufferedWriter.close();
@@ -59,7 +58,6 @@ public class ManuseamentoArquivo {
     public static void limparLinha() throws IOException {
 
         boolean excluido = false;
-
         var identificador = Long.parseLong(JOptionPane.showInputDialog(null,
                 "Digite o identificador do aluno (número de seis dígitos)."));
         var disciplina = JOptionPane.showInputDialog(null, "Digite a disciplina.");

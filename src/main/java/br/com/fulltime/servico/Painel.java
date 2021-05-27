@@ -63,8 +63,8 @@ public class Painel {
                         ManuseamentoArquivo.limparLinha();
                     } catch (NumberFormatException e) {
                         if (e.getMessage().equals("null")) {
-                        e.printStackTrace();}
-                        else {
+                            e.printStackTrace();
+                        } else {
                             JOptionPane.showMessageDialog(null, "Não foi digitado um número. Tente novamente.");
                         }
                     } catch (IOException e) {
