@@ -20,10 +20,11 @@ public class Painel {
             int input = JOptionPane.showOptionDialog(null, "O que deseja fazer?",
                     "Escolha uma opção.",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            var option = UserOptions.getFromValue(input);
 
-            switch (input) {
+            switch (option) {
                 // Caso o usuário queira checar todas as notas
-                case 0 -> {
+                case VISUALIZAR_NOTAS -> {
                     var interpretador = new Interpretador();
                     try {
 
@@ -40,7 +41,7 @@ public class Painel {
                 }
 
                 // Caso o usuário queira adicionar uma nova nota
-                case 1 -> {
+                case ADICIONAR_NOTAS -> {
                     var aluno = new Aluno("0", "n/a");
                     var mensagem = new Mensagem();
 
@@ -57,10 +58,13 @@ public class Painel {
                 }
 
                 // Caso o usuário queira deletar uma nota
-                case 2 -> {
+                case DELETAR_LINHA -> {
 
                     try {
-                        ManuseamentoArquivo.limparLinha();
+                        long identificador = Long.parseLong(JOptionPane.showInputDialog(null,
+                                "Digite o identificador do aluno (número de seis dígitos)."));
+                        String disciplina = JOptionPane.showInputDialog(null, "Digite a disciplina.");
+                        ManuseamentoArquivo.limparLinha(identificador, disciplina);
                     } catch (NumberFormatException e) {
                         if (e.getMessage().equals("null")) {
                             e.printStackTrace();
