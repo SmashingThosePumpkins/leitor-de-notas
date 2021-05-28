@@ -1,4 +1,4 @@
-package br.com.fulltime.servico;
+package br.com.fulltime.modelo;
 
 import java.util.stream.Stream;
 

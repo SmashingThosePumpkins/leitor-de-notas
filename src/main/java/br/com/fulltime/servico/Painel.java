@@ -2,6 +2,7 @@ package br.com.fulltime.servico;
 
 import br.com.fulltime.modelo.Aluno;
 import br.com.fulltime.modelo.Mensagem;
+import br.com.fulltime.modelo.UserOptions;
 
 import javax.swing.*;
 import java.io.*;
