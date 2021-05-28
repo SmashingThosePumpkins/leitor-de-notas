@@ -7,7 +7,7 @@ import java.io.*;
 
 public class Interpretador {
 
-    public ArrayList<Mensagem> getNotas() throws FileNotFoundException {
+    public static ArrayList<Mensagem> getNotas() throws FileNotFoundException {
         var lista = new ArrayList<Mensagem>();
 
         // Abrir Scanner
@@ -18,22 +18,27 @@ public class Interpretador {
 
             // Ler linha e separar conteúdos em uma array
             var linha = leitor.nextLine();
-            String[] atributos = linha.split(";");
+            String[] mensagens = linha.split("\\|");
 
-            // Inserir atributos da linha na classe Mensagem
-            String identificador = atributos[Arquivo.ARRAY_IDENTIFICADOR_ALUNO];
-            String nomeAluno = atributos[Arquivo.ARRAY_NOME_ALUNO];
-            String atributo = atributos[Arquivo.ARRAY_DISCIPLINA];
-            String primeiraNota = atributos[Arquivo.ARRAY_PRIMEIRA_NOTA];
-            String segundaNota = atributos[Arquivo.ARRAY_SEGUNDA_NOTA].replace("|", "");
+            for (String mensagen : mensagens) {
+                String[] atributos = mensagen.split(";");
 
-            mensagem.setAluno(identificador, nomeAluno);
-            mensagem.setDisciplina(atributo);
-            mensagem.setPrimeiraNota(primeiraNota);
-            mensagem.setSegundaNota(segundaNota);
+                // Inserir atributos da linha na classe Mensagem
+                String identificador = atributos[Arquivo.ARRAY_IDENTIFICADOR_ALUNO];
+                String nomeAluno = atributos[Arquivo.ARRAY_NOME_ALUNO];
+                String atributo = atributos[Arquivo.ARRAY_DISCIPLINA];
+                String primeiraNota = atributos[Arquivo.ARRAY_PRIMEIRA_NOTA];
+                String segundaNota = atributos[Arquivo.ARRAY_SEGUNDA_NOTA].replace("|", "");
 
-            // Adicionar mensagem na lista
-            lista.add(mensagem);
+                mensagem.setAluno(identificador, nomeAluno);
+                mensagem.setDisciplina(atributo);
+                mensagem.setPrimeiraNota(primeiraNota);
+                mensagem.setSegundaNota(segundaNota);
+
+                // Adicionar mensagem na lista
+                lista.add(mensagem);
+
+            }
 
         } while (leitor.hasNextLine());
 

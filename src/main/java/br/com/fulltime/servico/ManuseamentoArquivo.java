@@ -10,10 +10,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ManuseamentoArquivo {
 
-    private static String ARQUIVO_TEXTO_TEMPORARIO = "src/main/resources/temp.txt";
+    private final static String ARQUIVO_TEXTO_TEMPORARIO = "src/main/resources/temp.txt";
 
     public static boolean imprimirMensagem(Aluno aluno, Mensagem mensagem) throws IOException {
         // Pegar os dados necessários para o cadastro
@@ -30,25 +31,11 @@ public class ManuseamentoArquivo {
         }
 
         // Construir a nova linha
-        var stringBuilder = new StringBuilder();
-        stringBuilder.append('@');
-        stringBuilder.append(String.format("%06d", mensagem.getIdentificador()));
-        stringBuilder.append(';');
-        stringBuilder.append(mensagem.getNomeAluno());
-        stringBuilder.append(';');
-        stringBuilder.append(mensagem.getDisciplina());
-        stringBuilder.append(";N1");
-        var n1 = (int) (mensagem.getPrimeiraNota() * 10000);
-        stringBuilder.append(String.format("%04d", n1));
-        stringBuilder.append(";N2");
-        var n2 = (int) (mensagem.getSegundaNota() * 10000);
-        stringBuilder.append(String.format("%04d", n2));
-        stringBuilder.append('|');
-        stringBuilder.append('\n');
+        var formattedString = mensagem.toFormattedString();
 
         // Anexar a nova linha ao arquivo de texto
         var bufferedWriter = new BufferedWriter(new FileWriter(Arquivo.ARQUIVO_NOTAS, true));
-        bufferedWriter.append(stringBuilder);
+        bufferedWriter.append(formattedString);
         bufferedWriter.close();
 
         return true;
@@ -57,29 +44,28 @@ public class ManuseamentoArquivo {
 
     public static void limparLinha(long identificador, String disciplina) throws IOException {
 
-        boolean excluido = false;
+        AtomicBoolean excluido = new AtomicBoolean(false);
 
         {
             // Ler linha por linha o conteúdo do arquivo de notas e passando para um arquivo temporário,
             // pulando o arquivo que contém o identificador provido
 
-            var scanner = new Scanner(new File(Arquivo.ARQUIVO_NOTAS));
+            var lista = Interpretador.getNotas();
             BufferedWriter buffWriter = new BufferedWriter(new FileWriter(ARQUIVO_TEXTO_TEMPORARIO));
-            String linha;
 
-            do {
-                linha = scanner.nextLine();
-                if (linha.contains((identificador + "")) && linha.contains(";" + disciplina + ";")) {
-                    excluido = true;
-                    continue;
-                } else {
-                    buffWriter.write(linha + "\n");
+            lista.forEach((mensagem) -> {
+                try {
+                    if (mensagem.getIdentificador() == identificador && mensagem.getDisciplina().equals(disciplina)) {
+                        excluido.set(true);
+                    } else {
+                        buffWriter.write(mensagem.toFormattedString());
+                    }
+                } catch (IOException ignored) {
                 }
-            } while (scanner.hasNext());
+            });
 
             buffWriter.flush();
             buffWriter.close();
-            scanner.close();
         }
         {
             // Transferir o conteúdo do arquivo temporário para o principal
@@ -95,11 +81,12 @@ public class ManuseamentoArquivo {
 
             buffWriter.flush();
             File temp = new File(ARQUIVO_TEXTO_TEMPORARIO);
-            temp.delete();
+            boolean delete = temp.delete();
+            System.out.println(delete);
             buffWriter.close();
             scanner.close();
 
-            if (excluido) {
+            if (excluido.get()) {
                 JOptionPane.showMessageDialog(null, "Nota excluída com sucesso.");
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possível excluir a nota.\n" +

@@ -25,10 +25,9 @@ public class Painel {
             switch (option) {
                 // Caso o usuário queira checar todas as notas
                 case VISUALIZAR_NOTAS -> {
-                    var interpretador = new Interpretador();
                     try {
 
-                        lista = interpretador.getNotas();
+                        lista = Interpretador.getNotas();
                         var displayText = new StringBuilder();
                         lista.forEach(displayText::append);
 
@@ -62,8 +61,8 @@ public class Painel {
 
                     try {
                         long identificador = Long.parseLong(JOptionPane.showInputDialog(null,
-                                "Digite o identificador do aluno (número de seis dígitos)."));
-                        String disciplina = JOptionPane.showInputDialog(null, "Digite a disciplina.");
+                                "Digite o identificador do aluno (número de seis dígitos).").trim());
+                        String disciplina = JOptionPane.showInputDialog(null, "Digite a disciplina.").trim();
                         ManuseamentoArquivo.limparLinha(identificador, disciplina);
                     } catch (NumberFormatException e) {
                         if (e.getMessage().equals("null")) {
@@ -71,7 +70,7 @@ public class Painel {
                         } else {
                             JOptionPane.showMessageDialog(null, "Não foi digitado um número. Tente novamente.");
                         }
-                    } catch (IOException e) {
+                    } catch (NullPointerException | IOException e) {
                         e.printStackTrace();
                     }
                 }

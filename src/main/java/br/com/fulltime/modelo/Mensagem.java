@@ -4,8 +4,8 @@ public class Mensagem {
 
     private Aluno aluno = new Aluno("0", "n/a");
     private String disciplina = "n/a";
-    private String primeiraNota = "n/a";
-    private String segundaNota = "n/a";
+    private String primeiraNota = "0";
+    private String segundaNota = "0";
 
     public Mensagem() {
 
@@ -49,8 +49,7 @@ public class Mensagem {
     }
 
     public double getPrimeiraNota() {
-        var valor = Double.parseDouble(this.primeiraNota.replace("N1", ""));
-        return valor / 100;
+        return Double.parseDouble(this.primeiraNota);
     }
 
     public void setPrimeiraNota(String primeiraNota) {
@@ -63,28 +62,21 @@ public class Mensagem {
             semN1 = primeiraNota;
         }
 
-        if (semN1 == null) {
-            throw new NullPointerException("Valor nulo.");
+        var validado = validacao(semN1);
+        var nota = doubleformat(semN1);
+
+        if(validado) {
+            this.primeiraNota = nota + "";
         }
-        try {
-            var parseado = Double.parseDouble(semN1);
-            if (parseado > 1000) {
-                throw new StringIndexOutOfBoundsException("A maior nota possível é 10. A nota passada foi " + parseado);
-            }
-        } catch (NumberFormatException e) {
-            throw new StringIndexOutOfBoundsException("Número inválido.");
-        }
-        this.primeiraNota = semN1;
     }
 
     public double getSegundaNota() {
-        var valor = Double.parseDouble(this.segundaNota.replace("N2", ""));
-        return valor / 100;
+        return Double.parseDouble(this.segundaNota);
     }
 
     public void setSegundaNota(String segundaNota) {
 
-        // Remoção do "N2" caso a String fornecida contenha.
+        // Remoção do "N1" caso a String fornecida contenha.
         String semN2;
         if (segundaNota.contains("N2")) {
             semN2 = segundaNota.substring(2);
@@ -92,18 +84,42 @@ public class Mensagem {
             semN2 = segundaNota;
         }
 
-        if (semN2 == null) {
-            throw new NullPointerException("Valor nulo.");
+        var validado = validacao(semN2);
+        var nota = doubleformat(semN2);
+
+        if(validado) {
+            this.segundaNota = nota + "";
+        }
+    }
+
+    private double doubleformat(String nota){
+
+        var notaDouble = Double.parseDouble(nota);
+
+        // Se a nota for maior que 10.0 (caso esteja no formato 1000), divida por 100
+        if(notaDouble > 10.0) {
+            notaDouble /= 100.0;
+        }
+
+        // Se a nota continuar maior que 10.0, jogue uma exceção
+        if(notaDouble > 10.0){
+            throw new StringIndexOutOfBoundsException("A nota máxima é 10, a provida foi " + notaDouble);
+        }
+
+        return notaDouble;
+    }
+
+    private boolean validacao(String nota){
+
+        if (nota == null) {
+            return false;
         }
         try {
-            var parseado = Double.parseDouble(semN2);
-            if (parseado > 1000) {
-                throw new StringIndexOutOfBoundsException("A maior nota possível é 10. A nota passada foi " + parseado);
-            }
+            Double.parseDouble(nota);
         } catch (NumberFormatException e) {
-            throw new StringIndexOutOfBoundsException("Número inválido.");
+            return false;
         }
-        this.segundaNota = semN2;
+        return true;
     }
 
     @Override
@@ -113,5 +129,24 @@ public class Mensagem {
                 " - " + getDisciplina() +
                 " (" + getPrimeiraNota() +
                 " / " + getSegundaNota() + ")\n";
+    }
+
+    public String toFormattedString() {
+        var formatted = new StringBuilder();
+        formatted.append('@');
+        formatted.append(String.format("%06d", this.getIdentificador()));
+        formatted.append(';');
+        formatted.append(this.getNomeAluno());
+        formatted.append(';');
+        formatted.append(this.getDisciplina());
+        formatted.append(";N1");
+        var n1 = (int) (this.getPrimeiraNota() * 100.0);
+        formatted.append(String.format("%04d", n1));
+        formatted.append(";N2");
+        var n2 = (int) (this.getSegundaNota() * 100.0);
+        formatted.append(String.format("%04d", n2));
+        formatted.append('|');
+        formatted.append('\n');
+        return formatted.toString();
     }
 }
