@@ -46,23 +46,19 @@ public class Painel {
                     var mensagem = new Mensagem();
 
                     try {
-                        try {
-                            aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno (Limite de vinte caracteres)."));
-                            aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno (Seis números)."));
-                            mensagem.setDisciplina(JOptionPane.showInputDialog(null, "Digite a disciplina."));
-                            mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota.\nExemplos: [9.5], [6], [10.0]."));
-                            mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota.\nExemplos: [9.5], [6], [10.0]."));
-                            mensagem.setAluno(aluno);
-                        } catch (NullPointerException e) {
-                            e.printStackTrace();
-                        }
+                        aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno (Limite de vinte caracteres)."));
+                        aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno (Seis números)."));
+                        mensagem.setDisciplina(JOptionPane.showInputDialog(null, "Digite a disciplina."));
+                        mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota.\nExemplos: [9.5], [6], [10.0]."));
+                        mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota.\nExemplos: [9.5], [6], [10.0]."));
+                        mensagem.setAluno(aluno);
                         var imprimiu = ManuseamentoArquivo.imprimirMensagem(mensagem);
                         if (imprimiu) {
                             JOptionPane.showMessageDialog(null, "Nova nota cadastrada com sucesso.");
                         }
                     } catch (StringIndexOutOfBoundsException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
-                    } catch (IOException e) {
+                    } catch (IOException | NullPointerException e) {
                         e.printStackTrace();
                     }
                 }
