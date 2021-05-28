@@ -25,13 +25,8 @@ public class Mensagem {
     }
 
     public void setAluno(Aluno aluno) {
-        if (aluno == null) {
-            throw new NullPointerException("Aluno nulo.");
-        }
-        if (!(aluno.getNomeAluno().length() <= 20)) {
-            throw new StringIndexOutOfBoundsException("O limite para o nome é de vinte caracteres.");
-        }
-        this.aluno = aluno;
+        var formatado = Formatacao.aluno(aluno);
+        this.aluno = formatado;
     }
 
     public String getDisciplina() {
@@ -39,34 +34,22 @@ public class Mensagem {
     }
 
     public void setDisciplina(String disciplina) {
-        if (disciplina == null) {
-            throw new NullPointerException("Disciplina nula.");
-        }
-        if (!(disciplina.length() <= 20)) {
-            throw new StringIndexOutOfBoundsException("O limite para o nome da disciplina é de vinte caracteres.");
-        }
-        this.disciplina = disciplina;
+        var formatado = Formatacao.disciplina(disciplina);
+        this.disciplina = formatado;
     }
 
     public double getPrimeiraNota() {
         return Double.parseDouble(this.primeiraNota);
     }
 
-    public void setPrimeiraNota(String primeiraNota) {
+    public void setPrimeiraNota(String nota) {
 
-        // Remoção do "N1" caso a String fornecida contenha.
-        String semN1;
-        if (primeiraNota.contains("N1")) {
-            semN1 = primeiraNota.substring(2);
-        } else {
-            semN1 = primeiraNota;
-        }
-
-        var validado = validacao(semN1);
-        var nota = doubleformat(semN1);
+        var valor = Formatacao.nota(nota);
+        var validado = validacaoNota(valor);
+        var formatado = doubleFormatNota(valor);
 
         if(validado) {
-            this.primeiraNota = nota + "";
+            this.primeiraNota = formatado + "";
         }
     }
 
@@ -74,25 +57,18 @@ public class Mensagem {
         return Double.parseDouble(this.segundaNota);
     }
 
-    public void setSegundaNota(String segundaNota) {
+    public void setSegundaNota(String nota) {
 
-        // Remoção do "N1" caso a String fornecida contenha.
-        String semN2;
-        if (segundaNota.contains("N2")) {
-            semN2 = segundaNota.substring(2);
-        } else {
-            semN2 = segundaNota;
-        }
-
-        var validado = validacao(semN2);
-        var nota = doubleformat(semN2);
+        var valor = Formatacao.nota(nota);
+        var validado = validacaoNota(valor);
+        var formatado = doubleFormatNota(valor);
 
         if(validado) {
-            this.segundaNota = nota + "";
+            this.segundaNota = formatado + "";
         }
     }
 
-    private double doubleformat(String nota){
+    private double doubleFormatNota(String nota){
 
         var notaDouble = Double.parseDouble(nota);
 
@@ -109,7 +85,7 @@ public class Mensagem {
         return notaDouble;
     }
 
-    private boolean validacao(String nota){
+    private boolean validacaoNota(String nota){
 
         if (nota == null) {
             return false;

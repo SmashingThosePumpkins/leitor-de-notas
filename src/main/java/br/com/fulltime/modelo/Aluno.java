@@ -32,6 +32,6 @@ public class Aluno {
     public void setNomeAluno(String nomeAluno) {
 
         var formatado = Formatacao.nomeAluno(nomeAluno);
-        this.nomeAluno = nomeAluno;
+        this.nomeAluno = formatado;
     }
 }

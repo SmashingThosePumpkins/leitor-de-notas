@@ -30,7 +30,36 @@ public class Formatacao {
             throw new StringIndexOutOfBoundsException("O limite para o nome é de vinte caracteres.");
         }
 
-        // Como não há regras de formatação para o aluno, será retornado o original
         return nomeAluno;
+    }
+
+    public static Aluno aluno(Aluno aluno) {
+        var nome = nomeAluno(aluno.getNomeAluno());
+        var id = identificador(aluno.getIdentificador() + "");
+
+        aluno.setNomeAluno(nome);
+        aluno.setIdentificador(id);
+
+        return aluno;
+    }
+
+    public static String nota(String nota) {
+
+        if (nota.contains("N2") || nota.contains("N1")) {
+            nota = nota.substring(2);
+        }
+
+        return nota;
+    }
+
+    public static String disciplina(String disciplina) {
+        if (disciplina == null) {
+            throw new NullPointerException("Disciplina nula.");
+        }
+        if (!(disciplina.length() <= 20)) {
+            throw new StringIndexOutOfBoundsException("O limite para o nome da disciplina é de vinte caracteres.");
+        }
+
+        return disciplina;
     }
 }
