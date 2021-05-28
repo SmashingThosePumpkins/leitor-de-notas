@@ -15,17 +15,7 @@ public enum UserOptions {
         this.value = value;
     }
 
-    public static UserOptions getFromValue(int value){
-//        if(VISUALIZAR_NOTAS.value == value){
-//            return VISUALIZAR_NOTAS;
-//        }
-//        if(ADICIONAR_NOTAS.value == value){
-//            return ADICIONAR_NOTAS;
-//        }
-//        if(DELETAR_LINHA.value == value){
-//            return DELETAR_LINHA;
-//        }
-//        return UNKNOWN;
+    public static UserOptions getFromValue(int value) {
         return Stream.of(UserOptions.values())
                 .filter(opt -> opt.value == value)
                 .findFirst()
