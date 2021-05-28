@@ -53,16 +53,17 @@ public class ManuseamentoArquivo {
             var lista = Interpretador.getNotas();
             BufferedWriter buffWriter = new BufferedWriter(new FileWriter(ARQUIVO_TEXTO_TEMPORARIO));
 
-            lista.forEach((mensagem) -> {
+            for (Mensagem mensagem : lista) {
                 try {
                     if (mensagem.getIdentificador() == identificador && mensagem.getDisciplina().equals(disciplina)) {
                         excluido.set(true);
                     } else {
                         buffWriter.write(mensagem.toFormattedString());
                     }
-                } catch (IOException ignored) {
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            });
+            }
 
             buffWriter.flush();
             buffWriter.close();
