@@ -21,22 +21,8 @@ public class Aluno {
 
     public void setIdentificador(String identificador) {
 
-        String semArroba;
-        if (identificador.contains("@")) {
-            semArroba = identificador.substring(1);
-        } else {
-            semArroba = identificador;
-        }
-
-        if (semArroba.length() > 6) {
-            throw new StringIndexOutOfBoundsException("Identificador inválido.");
-        }
-        try {
-            Long.parseLong(semArroba);
-        } catch (NumberFormatException e) {
-            throw new StringIndexOutOfBoundsException("Identificador inválido.");
-        }
-        this.identificador = semArroba;
+        var formatado = Formatacao.identificador(identificador);
+        this.identificador = formatado;
     }
 
     public String getNomeAluno() {
@@ -44,12 +30,8 @@ public class Aluno {
     }
 
     public void setNomeAluno(String nomeAluno) {
-        if (nomeAluno == null) {
-            throw new NullPointerException("Nome do aluno nulo.");
-        }
-        if (!(nomeAluno.length() <= 20)) {
-            throw new StringIndexOutOfBoundsException("O limite para o nome é de vinte caracteres.");
-        }
+
+        var formatado = Formatacao.nomeAluno(nomeAluno);
         this.nomeAluno = nomeAluno;
     }
 }
