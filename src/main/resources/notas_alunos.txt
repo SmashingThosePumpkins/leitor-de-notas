@@ -1,5 +1,5 @@
 @000101;Roberto de Melo;Matemática;N10650;N20600|
-@000101;Roberto de Melo;Português;N10870;N21000|
+@000101;Roberto de Melo;Português;N10880;N21000|
 @000101;Roberto de Melo;História;N10700;N20600|
 @000102;Silvia Fontes;Matemática;N11000;N20800|
 @000102;Silvia Fontes;Português;N10800;N20900|

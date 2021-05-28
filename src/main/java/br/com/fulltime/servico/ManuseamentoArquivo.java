@@ -16,19 +16,7 @@ public class ManuseamentoArquivo {
 
     private final static String ARQUIVO_TEXTO_TEMPORARIO = "src/main/resources/temp.txt";
 
-    public static boolean imprimirMensagem(Aluno aluno, Mensagem mensagem) throws IOException {
-        // Pegar os dados necessários para o cadastro
-        try {
-            aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno (Limite de vinte caracteres)."));
-            aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno (Seis números)."));
-            mensagem.setDisciplina(JOptionPane.showInputDialog(null, "Digite a disciplina."));
-            mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota.\nExemplos: [9.5], [6], [10.0]."));
-            mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota.\nExemplos: [9.5], [6], [10.0]."));
-            mensagem.setAluno(aluno);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return false;
-        }
+    public static boolean imprimirMensagem(Mensagem mensagem) throws IOException {
 
         // Construir a nova linha
         var formattedString = mensagem.toFormattedString();

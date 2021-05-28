@@ -41,11 +41,21 @@ public class Painel {
 
                 // Caso o usuário queira adicionar uma nova nota
                 case ADICIONAR_NOTAS -> {
-                    var aluno = new Aluno("0", "n/a");
+                    var aluno = new Aluno();
                     var mensagem = new Mensagem();
 
                     try {
-                        var imprimiu = ManuseamentoArquivo.imprimirMensagem(aluno, mensagem);
+                        try {
+                            aluno.setNomeAluno(JOptionPane.showInputDialog(null, "Digite o nome do aluno (Limite de vinte caracteres)."));
+                            aluno.setIdentificador(JOptionPane.showInputDialog(null, "Digite o identificador do aluno (Seis números)."));
+                            mensagem.setDisciplina(JOptionPane.showInputDialog(null, "Digite a disciplina."));
+                            mensagem.setPrimeiraNota(JOptionPane.showInputDialog(null, "Digite a primeira nota.\nExemplos: [9.5], [6], [10.0]."));
+                            mensagem.setSegundaNota(JOptionPane.showInputDialog(null, "Digite a segunda nota.\nExemplos: [9.5], [6], [10.0]."));
+                            mensagem.setAluno(aluno);
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
+                        var imprimiu = ManuseamentoArquivo.imprimirMensagem(mensagem);
                         if (imprimiu) {
                             JOptionPane.showMessageDialog(null, "Nova nota cadastrada com sucesso.");
                         }

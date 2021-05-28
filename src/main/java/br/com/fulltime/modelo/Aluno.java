@@ -5,6 +5,11 @@ public class Aluno {
     private String identificador;
     private String nomeAluno;
 
+    public Aluno() {
+        this.setIdentificador("0");
+        this.setNomeAluno("n/a");
+    }
+
     public Aluno(String identificador, String nomeAluno) {
         this.setIdentificador(identificador);
         this.setNomeAluno(nomeAluno);
@@ -23,9 +28,6 @@ public class Aluno {
             semArroba = identificador;
         }
 
-        if (identificador == null) {
-            throw new NullPointerException("Identificador nulo.");
-        }
         if (semArroba.length() > 6) {
             throw new StringIndexOutOfBoundsException("Identificador inválido.");
         }
